@@ -21,8 +21,8 @@ elseif is_mode("release") then
     add_defines("NOVL_RELEASE")
 end
 
-set_targetdir("$(buildir)/$(mode)/$(plat)_$(arch)")
-set_objectdir("$(buildir)/$(mode)/$(plat)_$(arch)/obj")
+set_targetdir("$(builddir)/$(mode)/$(plat)_$(arch)")
+set_objectdir("$(builddir)/$(mode)/$(plat)_$(arch)/obj")
 
 ---------- PLATFORM ----------
 -- supported platform
@@ -75,7 +75,7 @@ target("Novl")
         add_links(string.format("%sdll",lib))
 
         after_build(function(target)
-            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(buildir)/$(mode)/$(plat)_$(arch)")
+            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(builddir)/$(mode)/$(plat)_$(arch)")
         end)
     end
 
@@ -128,7 +128,7 @@ target("Novl Editor")
         add_links(string.format("%sdll",lib))
 
         after_build(function(target)
-            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(buildir)/$(mode)/$(plat)_$(arch)")
+            os.cp(string.format("../Libs/%s/bin/$(plat)/$(arch)/%s.dll",lib,lib),"$(builddir)/$(mode)/$(plat)_$(arch)")
         end)
     end
 

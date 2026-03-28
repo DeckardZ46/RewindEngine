@@ -68,7 +68,7 @@ enum class NovlKeyCode : uint16 {
     Equal           = 0x2E, // =
     LeftBracket     = 0x2F, // [
     RightBracket    = 0x30, // ]
-    Backslash       = 0x31, // \ 
+    Backslash       = 0x31, // (backslash)
     Semicolon       = 0x33, // ;
     Apostrophe      = 0x34, // '
     Grave           = 0x35, // `
