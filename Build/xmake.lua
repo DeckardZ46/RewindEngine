@@ -1,13 +1,13 @@
 --[[
-< Novl Engine > xmake.lua
+< Rewind Engine > xmake.lua
 Author: DeckardZ46
 Date: 2024/07/10
-Note: This is xmake build file for Novl Engine
-Codebase: https://github.com/DeckardZ46/NovlEngine
+Note: This is xmake build file for Rewind Engine
+Codebase: https://github.com/DeckardZ46/RewindEngine
 --]]
 
 ---------- BASIC SETTINGS ----------
-set_project("Novl Engine")
+set_project("Rewind Engine")
 set_version("0.0.1")
 set_xmakever("2.9.3")
 
@@ -15,10 +15,10 @@ set_xmakever("2.9.3")
 set_allowedmodes("debug","release")
 add_rules("mode.debug", "mode.release")
 if is_mode("debug") then 
-    add_defines("NOVL_DEBUG")
-    add_defines("NOVL_ENABLE_ASSERT")
+    add_defines("Rwd_DEBUG")
+    add_defines("Rwd_ENABLE_ASSERT")
 elseif is_mode("release") then 
-    add_defines("NOVL_RELEASE")
+    add_defines("Rwd_RELEASE")
 end
 
 set_targetdir("$(builddir)/$(mode)/$(plat)_$(arch)")
@@ -31,22 +31,22 @@ set_allowedarchs("windows|x64")
 
 -- platform specified settings
 if is_plat("windows") then 
-    add_defines("NOVL_PLAT_WINDOWS")
+    add_defines("Rwd_PLAT_WINDOWS")
     set_languages("cxx20")
     set_runtimes("MD")
 end
 
----------- NOVL RUNTIME -------------
-target("Novl")
+---------- Rwd RUNTIME -------------
+target("Rewind")
     set_kind("static")
-    add_defines("NOVL_RT")
+    add_defines("Rwd_RT")
 
     -- add file to target
-    set_pcxxheader("../Novl/src/pch.h")
-    add_files("../Novl/**.cpp")
+    set_pcxxheader("../Rwd/src/pch.h")
+    add_files("../Rwd/**.cpp")
 
     -- add includes
-    add_includedirs("../Novl/src",{public = true})
+    add_includedirs("../Rwd/src",{public = true})
     
     -- link to target
     -- header only
@@ -66,7 +66,7 @@ target("Novl")
     end
     
     -- shared
-    libs = {"fmod"}
+    libs = {}
 
 
     for _, lib in ipairs(libs) do
@@ -89,18 +89,18 @@ target("Novl")
 
 target_end()
 
----------- NOVL EDITOR --------------
-target("Novl Editor")
-    add_deps("Novl")
+---------- Rwd EDITOR --------------
+target("Rewind Editor")
+    add_deps("Rewind")
     set_kind("binary")
-    add_defines("NOVL_EDT")
+    add_defines("Rwd_EDT")
 
     -- add file to target
-    set_pcxxheader("../Novl/src/pch.h")
-    add_files("../NovlEditor/**.cpp")
+    set_pcxxheader("../Rwd/src/pch.h")
+    add_files("../RwdEditor/**.cpp")
 
     -- add includes
-    add_includedirs("../NovlEditor/src")
+    add_includedirs("../RwdEditor/src")
     
     -- link to target
     -- header only
