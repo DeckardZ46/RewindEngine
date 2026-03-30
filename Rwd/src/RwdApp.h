@@ -11,13 +11,13 @@
 namespace Rwd{
 class RwdApp {
 public:
-    RwdApp(string name = "Rwd App");
+    RwdApp(std::string name = "Rwd App");
     virtual ~RwdApp();
 
     virtual void update();
     virtual void flush();
 
 protected:
-    string m_name;
+    std::string m_name;
 };
 } // namespace Rwd

@@ -11,7 +11,7 @@
 namespace Rwd {
 class PanelBase {
   public:
-    PanelBase(string &&name) : m_panelName(std::move(name)) {
+    PanelBase(std::string &&name) : m_panelName(std::move(name)) {
     }
     virtual ~PanelBase() {
     }
@@ -33,7 +33,7 @@ class PanelBase {
     }
 
   protected:
-    string m_panelName;
+    std::string m_panelName;
     float m_panelWidth;
     float m_panelHeight;
 };

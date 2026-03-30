@@ -9,11 +9,11 @@
 
 namespace Rwd {
 	struct WindowData {
-		string title;
+		std::string title;
 		uint32_t width;
 		uint32_t height;
 
-		WindowData( const string& title = "Rewind Engine",
+		WindowData( const std::string& title = "Rewind Engine",
 					uint32_t width = 1280,
 					uint32_t height = 720)
 				:title(title),width(width),height(height){}

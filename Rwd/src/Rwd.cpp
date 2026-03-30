@@ -19,11 +19,11 @@ void RwdRuntime::init() {
     NLOGD("Initializing Rwd Runtime...");
 
     // init input
-    m_inputManager = n_uptr<InputManager>(new InputManager());
+    m_inputManager = RUniquePtr<InputManager>(new InputManager());
     m_inputManager->init();
 
     // init window
-    m_window = n_uptr<WindowBase>(WindowBase::Create());
+    m_window = RUniquePtr<WindowBase>(WindowBase::Create());
     m_window->init();
 
     m_initialized = true;

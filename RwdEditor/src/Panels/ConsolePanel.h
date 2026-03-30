@@ -18,7 +18,7 @@
 namespace Rwd{
 class ConsolePanel :public PanelBase {
 public:
-    ConsolePanel(string &&name);
+    ConsolePanel(std::string &&name);
     ~ConsolePanel();
 
     void update() override;

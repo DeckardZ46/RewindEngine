@@ -25,11 +25,11 @@ class EditorDataManager {
         return s_Instance;
     }
 
-    inline n_sptr<n_cqueue<log_item>> getLogContainer() const {
+    inline RSharedPtr<RCqueue<log_item>> getLogContainer() const {
         return m_logMsgs;
     }
 
   private:
-    n_sptr<n_cqueue_safe<log_item>> m_logMsgs;
+    RSharedPtr<RSafeCqueue<log_item>> m_logMsgs;
 };
 } // namespace Rwd

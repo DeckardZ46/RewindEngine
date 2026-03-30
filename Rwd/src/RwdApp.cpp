@@ -2,7 +2,7 @@
 #include <RwdApp.h>
 
 namespace Rwd{
-RwdApp::RwdApp(string name): m_name(name){
+RwdApp::RwdApp(std::string name): m_name(name){
     // init runtime
     RwdRuntime::Get();
 }

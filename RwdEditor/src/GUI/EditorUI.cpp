@@ -77,7 +77,7 @@ void EditorUI::clear() {
         }
     }
     m_panels.clear();
-    n_vector<PanelBase *>().swap(m_panels);
+    std::vector<PanelBase *>().swap(m_panels);
 }
 
 void EditorUI::update() {

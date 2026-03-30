@@ -4,7 +4,7 @@
 
 namespace Rwd {
 EditorDataManager::EditorDataManager() {
-    m_logMsgs = make_shared<n_cqueue_safe<log_item>>(MAX_LOG_MSG);
+    m_logMsgs = make_shared<RSafeCqueue<log_item>>(MAX_LOG_MSG);
 
     // construct ui sink for editor
     auto ui_sink = gui_sink_mt(m_logMsgs);

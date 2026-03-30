@@ -19,7 +19,7 @@ const ImColor CMD_CLR{0.71f, 0.745f, 0.92f, 1.0f};
 
 void ClearLog();
 void AddLog();
-void AddCmd(string cmd, ...);
+void AddCmd(std::string cmd, ...);
 static int TextEditCallback(ImGuiInputTextCallbackData *data);
 
 // portable helpers
@@ -57,7 +57,7 @@ static void Strtrim(char *s) {
 /**
  * Console Panel Members
  */
-ConsolePanel::ConsolePanel(string &&name) : PanelBase(std::move(name)) {
+ConsolePanel::ConsolePanel(std::string &&name) : PanelBase(std::move(name)) {
     ELOGD("Initializing console panel...");
     float dpiscale = RwdRuntime::Get().getWindow().getDPIScale();
     m_panelWidth = 1000.0f * dpiscale;
@@ -220,7 +220,7 @@ void ConsolePanel::draw() {
         if (s[0]) {
             // TODO:
             // ExecCommand(s);
-            AddCmd(string(s));
+            AddCmd(std::string(s));
         }
         strcpy(s, "");
         reclaim_focus = true;
@@ -302,7 +302,7 @@ void AddLog() {
     ELOGI("Added default log.");
 }
 
-void AddCmd(string cmd, ...) {
+void AddCmd(std::string cmd, ...) {
     log_item it{.isCmd = true, .msg = cmd, .logger = "", .time = std::chrono::system_clock::now(), .level = LEVEL::off};
     EditorDataManager::Get().getLogContainer()->forceEnqueue(std::move(it));
 }

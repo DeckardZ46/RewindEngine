@@ -20,6 +20,6 @@ class EditorUI {
     void draw();
 
   private:
-    n_vector<PanelBase *> m_panels;
+    std::vector<PanelBase *> m_panels;
 };
 } // namespace Rwd

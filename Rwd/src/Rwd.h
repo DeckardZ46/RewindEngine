@@ -65,7 +65,7 @@ class RwdRuntime {
     bool m_initialized = false;
 
     // managers & systems
-    n_uptr<InputManager> m_inputManager;
-    n_uptr<WindowBase> m_window;
+    RUniquePtr<InputManager> m_inputManager;
+    RUniquePtr<WindowBase> m_window;
 };
 } // namespace Rwd

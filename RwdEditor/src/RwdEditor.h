@@ -20,6 +20,6 @@ class RwdEditor : public RwdApp {
     void update() override;
 
   private:
-    n_uptr<EditorUI> m_GUI;
+    RUniquePtr<EditorUI> m_GUI;
 };
 } // namespace Rwd

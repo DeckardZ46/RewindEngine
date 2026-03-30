@@ -17,15 +17,15 @@ namespace Rwd {
 
 struct log_item {
     bool isCmd = false;
-    string msg;
-    string logger;
+    std::string msg;
+    std::string logger;
     spdlog::log_clock::time_point time;
     spdlog::level::level_enum level;
 };
 
 template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex> {
   public:
-    gui_sink(n_sptr<n_cqueue<log_item>> msg_queue) {
+    gui_sink(RSharedPtr<RCqueue<log_item>> msg_queue) {
         messages = std::move(msg_queue);
     }
 
@@ -41,8 +41,8 @@ template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex
             messages->dequeue();
         }
         log_item it;
-        it.msg = string(msg.payload.data(), msg.payload.size());
-        it.logger = string(msg.logger_name.data(), msg.logger_name.size());
+        it.msg = std::string(msg.payload.data(), msg.payload.size());
+        it.logger = std::string(msg.logger_name.data(), msg.logger_name.size());
         it.level = msg.level;
         it.time = msg.time;
         messages->forceEnqueue(std::move(it));
@@ -53,12 +53,12 @@ template <typename Mutex> class gui_sink : public spdlog::sinks::base_sink<Mutex
 
   private:
     uint16_t max_msg = MAX_LOG_MSG;
-    n_sptr<n_cqueue<log_item>> messages;
+    RSharedPtr<RCqueue<log_item>> messages;
 };
 
-typedef n_sptr<gui_sink<std::mutex>> gui_sink_mt_t;
+typedef RSharedPtr<gui_sink<std::mutex>> gui_sink_mt_t;
 
-inline const gui_sink_mt_t gui_sink_mt(n_sptr<n_cqueue<log_item>> target) {
+inline const gui_sink_mt_t gui_sink_mt(RSharedPtr<RCqueue<log_item>> target) {
     return std::make_shared<gui_sink<std::mutex>>(std::move(target));
 }
 
